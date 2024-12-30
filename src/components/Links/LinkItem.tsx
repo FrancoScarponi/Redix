@@ -11,7 +11,7 @@ interface Props{
 
 export const LinkItem: React.FC<Props> = ({link}) => {
 
-  const dominio = "localhost:5173/"
+  const dominio = "redix.netlify.app/"
   const [alert,setAlert] = useState(false)
   
   const handleRedirect = ()=>{
