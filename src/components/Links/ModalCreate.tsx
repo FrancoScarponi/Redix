@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { RandomLink } from "../RandomLink";
 import { userType } from "../../types/types";
 import { useDispatch, useSelector } from "react-redux";
-import { addLink, updateLinks } from "../../services/firebaseServices";
+import { addLink, updateLinks } from "../../services/fireBaseServices";
 import { setLinks } from "../../redux/linkSlice";
 
 interface Props {
