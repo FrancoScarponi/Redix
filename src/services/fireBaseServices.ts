@@ -1,5 +1,5 @@
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore"
-import { auth, db } from "../firebase/credentials"
+import { db } from "../firebase/credentials"
 import { LinkType } from "../types/types";
 import { getAuth } from "firebase/auth";
 

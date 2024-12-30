@@ -4,9 +4,6 @@ import { ModalCreate } from "../components/Links/ModalCreate"
 import {LinkList} from "../components/Links/LinkList";
 import { useDispatch} from "react-redux";
 import {setLinks} from "../redux/linkSlice"
-import { collection, getDocs, query } from "firebase/firestore";
-import { db } from "../firebase/credentials";
-import {LinkType} from "../types/types"
 import { updateLinks } from "../services/fireBaseServices";
 
 export const Dashboard = () => {
