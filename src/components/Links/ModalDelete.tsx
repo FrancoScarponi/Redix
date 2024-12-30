@@ -5,6 +5,7 @@ import { db } from "../../firebase/credentials"
 import { useDispatch } from "react-redux"
 import { setLinks } from "../../redux/linkSlice"
 import { Alerts } from "../Alerts"
+import { updateLinks } from "../../services/fireBaseServices"
 
 
 interface Props{
@@ -20,10 +21,9 @@ export const ModalDelete:React.FC<Props> = ({modal, setModal,link}) => {
   
   const dispatch = useDispatch()  
   
-  const updateLinks = async ()=>{
+  const refreshLinks = async ()=>{
     try{
-      const querySnapshot = await getDocs(query(collection(db,"links")));
-      const linksData: LinkType[] = querySnapshot.docs.map(doc=>doc.data() as LinkType);
+      const linksData= await updateLinks(); 
       dispatch(setLinks(linksData))
     }catch(error){
       console.log("Error en fetch: ", error)
@@ -42,7 +42,7 @@ export const ModalDelete:React.FC<Props> = ({modal, setModal,link}) => {
         const docRef = doc(db,"links",docSnap.id);
         await deleteDoc(docRef)
       })
-      updateLinks()
+      refreshLinks()
       setModal(false)
       setTxtLink("")
     }catch(error){
