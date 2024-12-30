@@ -1,6 +1,7 @@
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore"
-import { db } from "../firebase/credentials"
+import { auth, db } from "../firebase/credentials"
 import { LinkType } from "../types/types";
+import { getAuth } from "firebase/auth";
 
 
 
@@ -18,7 +19,9 @@ export const addLink = async (data:LinkType)=>{
 
 export const updateLinks = async ()=>{
     try{
-      const querySnapshot = await getDocs(query(collection(db,"links")));
+      const userUid = await getAuth().currentUser?.uid;
+      const q = await query(collection(db,"links"), where("userUid", "==", userUid))
+      const querySnapshot = await getDocs(q)
       const linksData: LinkType[] = querySnapshot.docs.map(doc=>doc.data() as LinkType);
       return linksData
     }catch(error){

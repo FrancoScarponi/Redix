@@ -7,6 +7,7 @@ import {setLinks} from "../redux/linkSlice"
 import { collection, getDocs, query } from "firebase/firestore";
 import { db } from "../firebase/credentials";
 import {LinkType} from "../types/types"
+import { updateLinks } from "../services/fireBaseServices";
 
 export const Dashboard = () => {
   
@@ -21,8 +22,7 @@ export const Dashboard = () => {
   useEffect(()=>{
     const fetchLinks = async()=>{
       try{
-        const querySnapshot = await getDocs(query(collection(db,"links")));
-        const linksData: LinkType[] = querySnapshot.docs.map(doc=>doc.data() as LinkType);
+        const linksData = await updateLinks()
         dispatch(setLinks(linksData))
       }catch(error){
         console.log("Error en fetch: ", error)
