@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+
+  color: #F1F1F1;
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Aplica la animación al dropdown cuando se muestre */
+.dropdown-enter {
+  animation: slideDown 0.1s ease-out forwards;
+}
+
+.dropdown-exit {
+  animation: slideDown 0.3s ease-in reverse forwards;
+}
+
+
+
+/* HTML: <div class="loader"></div> */
+.loader {
+  width: 20px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 3px solid;
+  border-color: #6f6f6f #0000;
+  animation: l1 1s infinite;
+}
+@keyframes l1 {to{transform: rotate(.5turn)}}
+
+
+
+
